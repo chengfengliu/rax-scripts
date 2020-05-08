@@ -1,7 +1,6 @@
 const { resolve, relative, join } = require('path');
 const { readJsonSync, existsSync } = require('fs-extra');
 const { RawSource } = require('webpack-sources');
-const adjustCSS = require('./utils/adjustCSS');
 const { MINIAPP, VENDOR_CSS_FILE_NAME } = require('./constants');
 const adapter = require('./adapter');
 const isCSSFile = require('./utils/isCSSFile');
@@ -87,7 +86,7 @@ class MiniAppRuntimePlugin {
                 compilation.assets[
                   `${relativeFilePath}.${adapter[target].css}`
                 ] = new RawSource(
-                  adjustCSS(compilation.assets[relativeFilePath].source())
+                  compilation.assets[relativeFilePath].source()
                 );
                 delete compilation.assets[`${relativeFilePath}`];
               }

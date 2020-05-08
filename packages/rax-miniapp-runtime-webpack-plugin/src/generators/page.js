@@ -4,7 +4,6 @@ const { MINIAPP } = require('../constants');
 const adapter = require('../adapter');
 const getAssetPath = require('../utils/getAssetPath');
 const addFileToCompilation = require('../utils/addFileToCompilation');
-const adjustCSS = require('../utils/adjustCSS');
 const getTemplate = require('../utils/getTemplate');
 
 function generatePageJS(
@@ -120,7 +119,7 @@ function generatePageCSS(compilation, assets, pageRoute, { target, command }) {
 
   addFileToCompilation(compilation, {
     filename: `${pageRoute}.${adapter[target].css}`,
-    content: adjustCSS(pageCssContent),
+    content: pageCssContent,
     target,
     command,
   });
